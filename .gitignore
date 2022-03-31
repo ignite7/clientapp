@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /storage/db
+storage/debugbar
 /vendor
 .env
 .env.backup

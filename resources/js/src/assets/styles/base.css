@@ -12,7 +12,18 @@ html {
 body {
     margin: 0 auto;
     width: 300px;
-    background-color: #a5cff9;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: linear-gradient(
+        109.6deg,
+        rgba(121, 203, 202, 1) 11.2%,
+        rgba(119, 161, 211, 1) 91.1%
+    );
 }
 
 @media (min-width: 600px) {
@@ -51,4 +62,13 @@ h5 {
 h6,
 p {
     font-size: 16px;
+}
+
+:root {
+    --white: #f5f5f5;
+    --blue-1: #07c8f9;
+    --blue-2: #09a6f3;
+    --blue-3: #0a85ed;
+    --blue-4: #0c63e7;
+    --blue-5: #0d41e1;
 }
