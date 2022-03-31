@@ -20,13 +20,13 @@ function Clients({ clients }) {
         <div className="page-clients">
             <h1 className="page-clients__title">Client List</h1>
             <p className="page-clients__welcome">
-                Hello, {name} welcome to your admin account.
-            </p>
-            <p
-                className="page-clients__logout"
-                onClick={() => Inertia.post(route("logout"))}
-            >
-                Logout.
+                Hello, {name}.{" "}
+                <b
+                    className="page-clients__logout"
+                    onClick={() => Inertia.post(route("logout"))}
+                >
+                    Logout.
+                </b>
             </p>
             <div className="page-clients__container">
                 <div className="page-clients__container-button">

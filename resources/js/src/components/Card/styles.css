@@ -16,10 +16,7 @@
     left: 90%;
     transform: translate(-90%, -10%);
     cursor: pointer;
-}
-
-.card__delete:hover {
-    color: var(--bs-danger);
+    font-size: 1.4rem;
 }
 
 .card__picture {
@@ -62,8 +59,8 @@
 
     .card__delete {
         top: 15%;
-        left: 95%;
-        transform: translate(-95%, -15%);
+        left: 96%;
+        transform: translate(-96%, -15%);
     }
 
     .card__picture {

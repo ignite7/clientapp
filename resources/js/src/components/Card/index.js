@@ -8,14 +8,12 @@ import "./styles.css";
 function Card({ client }) {
     return (
         <div className="card">
-            <p
-                className="card__delete"
+            <button
+                className="card__delete btn-close"
                 onClick={() =>
                     Inertia.delete(route("clients.destroy", client.id))
                 }
-            >
-                X
-            </p>
+            ></button>
             <div className="card__picture">
                 <figure className="card__picture-figure">
                     <img

@@ -24,5 +24,5 @@ Route::resource("signup", SignupController::class)->only(["index", "store"]);
 
 Route::group(["middleware" => ["auth"]], function () {
     Route::post("logout", LogoutController::class)->name("logout");
-    Route::resource("clients", ClientController::class);
+    Route::resource("clients", ClientController::class)->except("show");
 });

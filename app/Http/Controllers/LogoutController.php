@@ -8,6 +8,8 @@ class LogoutController extends Controller
     {
         auth()->logout();
 
+        session()->flash("message", __("You are logged out now."));
+
         return redirect()->route("login");
     }
 }

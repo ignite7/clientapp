@@ -21,6 +21,8 @@ class SignupController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        session()->flash("message", __("Account created successfully."));
+
         return redirect()->route("login");
     }
 }

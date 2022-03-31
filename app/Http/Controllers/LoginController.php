@@ -20,6 +20,13 @@ class LoginController extends Controller
                 ->withErrors(["password" => "Invalid credentials"]);
         }
 
+        session()->flash(
+            "message",
+            __(
+                "Hello, {$request->user()->fullName} welcome to your admin account."
+            )
+        );
+
         return redirect()->route("clients.index");
     }
 }

@@ -4,8 +4,11 @@
     width: 100%;
 }
 
-.page-clients__logout {
+.page-clients__welcome {
     margin-bottom: 5rem;
+}
+
+.page-clients__logout {
     color: var(--bs-blue);
     cursor: pointer;
 }

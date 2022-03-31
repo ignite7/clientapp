@@ -57,6 +57,8 @@ class ClientController extends Controller
 
         $this->createClient($request);
 
+        session()->flash("message", __("Client created successfully."));
+
         return redirect()->route("clients.index");
     }
 
@@ -75,6 +77,8 @@ class ClientController extends Controller
 
         $this->updateClient($request, $client);
 
+        session()->flash("message", __("Client updated successfully."));
+
         return redirect()->route("clients.index");
     }
 
@@ -83,6 +87,8 @@ class ClientController extends Controller
         $this->authorize("delete", $client);
 
         $client->delete();
+
+        session()->flash("message", __("Client deleted successfully."));
 
         return redirect()->route("clients.index");
     }
