@@ -4,9 +4,16 @@
     width: 100%;
 }
 
-.page-clients__welcome {
+.page-clients__logout {
     margin-bottom: 5rem;
+    color: var(--bs-blue);
+    cursor: pointer;
 }
+
+.page-clients__logout:hover {
+    opacity: 0.9;
+}
+
 .page-clients__container {
     display: flex;
     flex-direction: column;

@@ -22,6 +22,12 @@ function Clients({ clients }) {
             <p className="page-clients__welcome">
                 Hello, {name} welcome to your admin account.
             </p>
+            <p
+                className="page-clients__logout"
+                onClick={() => Inertia.post(route("logout"))}
+            >
+                Logout.
+            </p>
             <div className="page-clients__container">
                 <div className="page-clients__container-button">
                     <Button

@@ -77,4 +77,10 @@
     .card__info {
         width: 50%;
     }
+
+    .card__info-name {
+        width: 90%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
 }

@@ -8,6 +8,6 @@ class LogoutController extends Controller
     {
         auth()->logout();
 
-        return redirect()->route("login.create");
+        return redirect()->route("login");
     }
 }
