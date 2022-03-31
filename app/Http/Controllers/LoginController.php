@@ -7,12 +7,17 @@ use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginRequest $request)
+    public function create()
+    {
+        return inertia("Login");
+    }
+
+    public function store(LoginRequest $request)
     {
         if (!auth()->attempt($request->validated())) {
             return redirect()->route("login");
         }
 
-        return inertia("Login");
+        return redirect()->route("clients.index");
     }
 }

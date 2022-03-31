@@ -5,7 +5,7 @@ import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 
 // Styles
-import './assets/styles/base.css'
+import "./assets/styles/base.css";
 
 // DOM
 createInertiaApp({

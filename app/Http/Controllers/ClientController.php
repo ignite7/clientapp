@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreRequest;
 use App\Http\Requests\Client\UpdateRequest;
+use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use App\Traits\ClientTrait;
 
@@ -18,7 +19,14 @@ class ClientController extends Controller
 
         $user = auth()->user();
 
-        return inertia("Clients", ["clients" => $user->clients()->get()]);
+        return inertia("Clients", [
+            "clients" => ClientResource::collection(
+                $user
+                    ->clients()
+                    ->paginate()
+                    ->withQueryString()
+            )->resource,
+        ]);
     }
 
     public function create()
@@ -41,14 +49,18 @@ class ClientController extends Controller
     {
         $this->authorize("view", $client);
 
-        return inertia("Clients/Show", ["client" => $client]);
+        return inertia("Clients/Show", [
+            "client" => ClientResource::make($client)->toArray($client),
+        ]);
     }
 
     public function edit(Client $client)
     {
         $this->authorize("update", $client);
 
-        return inertia("Clients/Edit", ["client" => $client]);
+        return inertia("Clients/Edit", [
+            "client" => ClientResource::make($client)->toArray($client),
+        ]);
     }
 
     public function update(UpdateRequest $request, Client $client)

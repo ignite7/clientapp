@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("signup", SignupController::class);
-Route::post("login", LoginController::class);
-Route::resource("clients", ClientController::class)->middleware("auth");
+Route::resource("signup", SignupController::class)->only(["create", "store"]);
+Route::resource("login", LoginController::class)->only(["create", "store"]);
+
+Route::group(["middleware" => ["auth"]], function () {
+    Route::post("logout", LogoutController::class);
+    Route::resource("clients", ClientController::class);
+});
