@@ -7,24 +7,35 @@ use App\Http\Requests\Client\StoreRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use App\Traits\ClientTrait;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     use ClientTrait;
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize("viewAny", Client::class);
 
         $user = auth()->user();
 
+        $clients = $user->clients();
+
+        if ($q = $request->get("q")) {
+            $clients->where(function ($query) use ($q) {
+                $query->orWhereRaw(
+                    "concat(first_name, ' ', last_name) like ?",
+                    ["%{$q}%"]
+                );
+                $query->orWhere("email", "like", "%{$q}%");
+            });
+        }
+
         return inertia("Clients", [
-            "clients" => ClientResource::collection(
-                $user
-                    ->clients()
-                    ->paginate()
-                    ->withQueryString()
-            )->resource,
+            "clients" => fn() => ClientResource::collection(
+                $clients->paginate(5)->withQueryString()
+            ),
+            "q" => fn() => $q,
         ]);
     }
 
