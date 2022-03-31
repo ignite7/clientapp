@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,7 +26,6 @@ class UpdateRequest extends FormRequest
         return [
             "first_name" => ["string", "max:255"],
             "last_name" => ["string", "max:255"],
-            "email" => ["string", "email:rfc,dns", "max:255", "unique:clients"],
             "picture" => ["mimes:jpg,png,jpeg"],
         ];
     }

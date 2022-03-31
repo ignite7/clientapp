@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreRequest;
-use App\Http\Resources\ClientResource;
+use App\Http\Requests\Client\UpdateRequest;
+use App\Http\Resources\Client\IndexResource;
+use App\Http\Resources\Client\EditResource;
 use App\Models\Client;
 use App\Traits\ClientTrait;
 use Illuminate\Http\Request;
@@ -32,8 +34,11 @@ class ClientController extends Controller
         }
 
         return inertia("Clients", [
-            "clients" => fn() => ClientResource::collection(
-                $clients->paginate(5)->withQueryString()
+            "clients" => fn() => IndexResource::collection(
+                $clients
+                    ->orderByDesc("updated_at")
+                    ->paginate(5)
+                    ->withQueryString()
             ),
             "q" => fn() => $q,
         ]);
@@ -43,7 +48,7 @@ class ClientController extends Controller
     {
         $this->authorize("create", Client::class);
 
-        return inertia("Cases/Create");
+        return inertia("Clients/Create");
     }
 
     public function store(StoreRequest $request)
@@ -52,16 +57,7 @@ class ClientController extends Controller
 
         $client = $this->createClient($request);
 
-        return redirect()->route("clients.show", $client->id);
-    }
-
-    public function show(Client $client)
-    {
-        $this->authorize("view", $client);
-
-        return inertia("Clients/Show", [
-            "client" => ClientResource::make($client)->toArray($client),
-        ]);
+        return redirect()->route("clients.index");
     }
 
     public function edit(Client $client)
@@ -69,7 +65,7 @@ class ClientController extends Controller
         $this->authorize("update", $client);
 
         return inertia("Clients/Edit", [
-            "client" => ClientResource::make($client)->toArray($client),
+            "client" => EditResource::make($client)->toArray($client),
         ]);
     }
 
@@ -79,7 +75,7 @@ class ClientController extends Controller
 
         $this->updateClient($request, $client);
 
-        return redirect()->route("clients.show", $client->id);
+        return redirect()->route("clients.index");
     }
 
     public function destroy(Client $client)

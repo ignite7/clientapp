@@ -41,14 +41,29 @@ trait ClientTrait
         $client->update([
             "first_name" => $request->get("first_name", $client->first_name),
             "last_name" => $request->get("last_name", $client->last_name),
-            "email" => $request->get("email", $client->email),
         ]);
+
+        if ($email = $request->get("email")) {
+            if ($client->email !== $email) {
+                $request->validate([
+                    "email" => [
+                        "string",
+                        "email:rfc,dns",
+                        "max:255",
+                        "unique:clients",
+                    ],
+                ]);
+
+                $client->email = $email;
+            }
+        }
 
         if ($request->hasFile("picture")) {
             Storage::delete($client->picture);
             $client->picture = $request->file("picture")->store("pictures");
-            $client->save();
         }
+
+        $client->save();
 
         return $client;
     }

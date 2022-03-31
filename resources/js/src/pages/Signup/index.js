@@ -9,7 +9,7 @@ import Input from "@components/Form/Input";
 import Button from "@components/Button";
 
 // Styles
-import "./styles.css";
+import "@assets/styles/form.css";
 
 function Signup() {
     const { data, setData, post, processing, cancel, errors, reset } = useForm({
@@ -31,8 +31,10 @@ function Signup() {
     };
 
     return (
-        <form className="page-signup" onSubmit={handleSubmit}>
-            <h1 className="page-signup__title">Create your account</h1>
+        <form className="page-signup form" onSubmit={handleSubmit}>
+            <h1 className="page-signup__title form__title">
+                Create your account
+            </h1>
             <Input
                 type="text"
                 placeholder="First name"
@@ -84,12 +86,10 @@ function Signup() {
                 required
             />
             <Button type="submit" name="CREATE ACCOUNT" disabled={processing} />
-            <div className="page-signup__login">
-                <p className="page-signup__login-text">
-                    Already have an account?
-                </p>
+            <div className="form__footer">
+                <p className="form__footer-text">Already have an account?</p>
                 <p
-                    className="page-signup__login-link"
+                    className="form__footer-link"
                     onClick={() => Inertia.get(route("login"))}
                 >
                     Login here.

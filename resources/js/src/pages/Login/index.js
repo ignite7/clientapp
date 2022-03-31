@@ -9,7 +9,7 @@ import Input from "@components/Form/Input";
 import Button from "@components/Button";
 
 // Styles
-import "./styles.css";
+import "@assets/styles/form.css";
 
 function Login() {
     const { data, setData, post, processing, cancel, errors, reset } = useForm({
@@ -27,8 +27,8 @@ function Login() {
     };
 
     return (
-        <form className="page-login" onSubmit={handleSubmit}>
-            <h1 className="page-login__title">Login</h1>
+        <form className="page-login form" onSubmit={handleSubmit}>
+            <h1 className="page-login__title form__title">Login</h1>
             <Input
                 type="email"
                 placeholder="Email address"
@@ -46,10 +46,10 @@ function Login() {
                 required
             />
             <Button type="submit" name="LOGIN" disabled={processing} />
-            <div className="page-login__signup">
-                <p className="page-login__signup-text">No account yet?</p>
+            <div className="form__footer">
+                <p className="form__footer-text">No account yet?</p>
                 <p
-                    className="page-login__signup-link"
+                    className="form__footer-link"
                     onClick={() => Inertia.get(route("signup.index"))}
                 >
                     Create one here.
