@@ -38,6 +38,14 @@
     width: 100%;
 }
 
+.page-clients__container-search .search__input {
+    width: 70%;
+}
+
+.page-clients__container-search .button {
+    width: 30%;
+}
+
 .page-client__pagination {
     width: 100%;
     margin-top: 2rem;
