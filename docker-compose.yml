@@ -1,0 +1,77 @@
+version: "3.3"
+
+services:
+    web:
+        container_name: web
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        working_dir: /var/www
+        entrypoint: sh entrypoints/web.sh
+        depends_on:
+            - db
+        expose:
+            - "9000"
+        networks:
+            - app-network
+        volumes:
+            - .:/var/www
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+    webserver:
+        image: nginx:alpine
+        container_name: webserver
+        restart: always
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - app-network
+        volumes:
+            - .:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d
+
+    db:
+        image: yobasystems/alpine-mariadb
+        container_name: db
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        networks:
+            - app-network
+        volumes:
+            - ./storage/db:/var/lib/mysql
+            - ./storage/db/logs:/var/log/mysql
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        restart: always
+        ports:
+            - "8081:80"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            PMA_HOST: db
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        networks:
+            - app-network
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: mailhog
+        restart: always
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
