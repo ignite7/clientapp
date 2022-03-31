@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, usePage } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -10,20 +10,29 @@ import Button from "@components/Button";
 import "./styles.css";
 
 function Search(only) {
+    const [delay, setDelay] = useState(null);
     const { props } = usePage();
     const { data, setData } = useForm({
         q: props.q ?? "",
     });
 
+    useEffect(() => {
+        return () => clearTimeout(delay);
+    }, [data.q]);
+
     const handleSearch = (e) => {
         setData("q", e.target.value);
 
-        Inertia.reload({
-            only,
-            data: { q: e.target.value.toLowerCase() },
-            preserveState: true,
-            replace: true,
-        });
+        const reloadTimeout = setTimeout(() => {
+            Inertia.reload({
+                only,
+                data: { q: e.target.value.toLowerCase(), page: null },
+                preserveState: true,
+                replace: true,
+            });
+        }, 300);
+
+        setDelay(reloadTimeout);
     };
 
     return (

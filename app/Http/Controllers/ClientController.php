@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreRequest;
 use App\Http\Requests\Client\UpdateRequest;
-use App\Http\Resources\Client\IndexResource;
 use App\Http\Resources\Client\EditResource;
+use App\Http\Resources\Client\IndexResource;
 use App\Models\Client;
 use App\Traits\ClientTrait;
 use Illuminate\Http\Request;
@@ -55,7 +55,7 @@ class ClientController extends Controller
     {
         $this->authorize("create", Client::class);
 
-        $client = $this->createClient($request);
+        $this->createClient($request);
 
         return redirect()->route("clients.index");
     }
