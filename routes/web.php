@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource("signup", SignupController::class)->only(["create", "store"]);
-Route::resource("login", LoginController::class)->only(["create", "store"]);
+Route::resource("/", LoginController::class)
+    ->only(["index", "store"])
+    ->name("index", "login");
+Route::resource("signup", SignupController::class)->only(["index", "store"]);
 
 Route::group(["middleware" => ["auth"]], function () {
-    Route::post("logout", LogoutController::class);
+    Route::post("logout", LogoutController::class)->name("logout");
     Route::resource("clients", ClientController::class);
 });

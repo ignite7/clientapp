@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
-    public function create()
+    public function index()
     {
         return inertia("Signup");
     }

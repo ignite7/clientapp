@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function create()
+    public function index()
     {
+        //auth()->login(User::find(1), true);
         return inertia("Login");
     }
 
