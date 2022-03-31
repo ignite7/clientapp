@@ -2,16 +2,10 @@
 import React from "react";
 
 // Styles
-
-// Components
+import "./styles.css";
 
 function Layout({ children }) {
-    return (
-        <>
-            <header className="header"></header>
-            <main className="main">{children}</main>
-        </>
-    );
+    return <main className="main">{children}</main>;
 }
 
 export default Layout;

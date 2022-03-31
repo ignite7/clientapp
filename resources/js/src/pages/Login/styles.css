@@ -1,0 +1,49 @@
+.page-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bs-gray-200);
+    padding: 5rem 5rem 2rem 5rem;
+    border-radius: 3rem;
+}
+
+.page-login__title {
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.page-login .input-text {
+    margin-bottom: 2rem;
+}
+
+.page-login .input-text:last-child {
+    margin-bottom: 0;
+}
+
+.page-login .button {
+    margin-top: 5rem;
+    height: 5rem;
+    background-color: var(--bs-blue);
+}
+
+.page-login__signup {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.page-login__signup-text {
+    margin: 0;
+    margin-right: 0.5rem;
+}
+
+.page-login__signup-link {
+    cursor: pointer;
+    color: var(--bs-blue);
+}
+
+.page-login__signup-link:hover {
+    opacity: 0.9;
+}

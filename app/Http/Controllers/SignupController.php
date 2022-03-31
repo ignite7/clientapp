@@ -21,6 +21,6 @@ class SignupController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route("login.create");
+        return redirect()->route("login");
     }
 }

@@ -1,0 +1,18 @@
+.input-text {
+    width: 100%;
+    font-size: 1.6rem;
+    border: none;
+    border-bottom: solid 0.1rem var(--bs-dark);
+    background-color: transparent;
+    color: var(--bs-dark);
+    padding: 1rem;
+    outline: none;
+}
+
+.input-text::placeholder {
+    color: var(--bs-dark);
+}
+
+.input-error {
+    color: var(--bs-danger);
+}

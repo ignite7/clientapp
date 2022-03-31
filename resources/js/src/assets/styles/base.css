@@ -9,6 +9,24 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    margin: 0 auto;
+    width: 300px;
+    background-color: #a5cff9;
+}
+
+@media (min-width: 600px) {
+    body {
+        width: 600px;
+    }
+}
+
+@media (min-width: 800px) {
+    body {
+        width: 800px;
+    }
+}
+
 /* Set font sizes */
 h1 {
     font-size: 40px;

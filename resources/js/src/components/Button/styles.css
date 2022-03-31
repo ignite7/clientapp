@@ -1,0 +1,14 @@
+.button {
+    width: 100%;
+    min-height: 3rem;
+    font-size: 1.6rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--bs-success);
+    color: var(--bs-white);
+    outline: none;
+}
+
+.button:hover {
+    opacity: 0.9;
+}

@@ -32,6 +32,7 @@ class SignupRequest extends FormRequest
                 "email:rfc,dns",
                 "max:255",
                 "unique:users",
+                "confirmed",
             ],
             "password" => ["required", "string", "min:12", "confirmed"],
         ];
