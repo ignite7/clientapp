@@ -1,8 +1,0 @@
-#!/bin/sh
-
-set -o errexit
-set -o nounset
-
-sudo python3 entrypoints/delete_db.py
-npm run dev
-docker-compose up
