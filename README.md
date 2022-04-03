@@ -21,6 +21,20 @@ Then you will have the app running on `http://localhost`. You have PhpMyAdmin
 to see your database running on `http://localhost:8081` and MailHog to see your
 emails running on `http://localhost:8025`
 
+### Schedule client list using Docker
+
+Running the queue worker:
+
+```bash
+docker exec web php artisan queue:listen
+```
+
+Running the schedule worker:
+
+```bash
+docker exec web php artisan schedule:work
+```
+
 ### Frontend
 
 You can find the frontend in the folder `resources/js/src`. The frontend was
