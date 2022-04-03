@@ -56,4 +56,3 @@ on Laravel.
 
 -   PHP
 -   Node JS
--   Docker Compose
